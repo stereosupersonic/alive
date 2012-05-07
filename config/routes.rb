@@ -1,3 +1,8 @@
 Alive::Application.routes.draw do
-  root :to => "home#index"
+  resources :clients
+
+  resources :names
+
+  root :to => "home#index"         
+  match 'secure' => 'home#secure', :as => :secure
 end
