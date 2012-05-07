@@ -1,5 +1,6 @@
-class HomeController < ApplicationController
+class HomeController < ApplicationController    
+  before_filter :authenticate, :except => [:index]
   def index
-    @users = User.all
+    
   end
 end
