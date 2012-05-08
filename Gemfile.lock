@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/stereosupersonic/g
+  revision: f9897e1c8915fde4c51c530976646ff8667fd834
+  specs:
+    g (1.3.1)
+      ruby_gntp (>= 0.3.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,9 +68,6 @@ GEM
     daemons (1.1.8)
     database_cleaner (0.7.2)
     diff-lcs (1.1.3)
-    email_spec (1.2.1)
-      mail (~> 2.2)
-      rspec (~> 2.0)
     erubis (2.7.0)
     eventmachine (0.12.10)
     execjs (1.3.1)
@@ -76,7 +80,6 @@ GEM
     ffi (1.0.11)
     gherkin (2.9.3)
       json (>= 1.4.6)
-    growl (1.0.3)
     guard (1.0.2)
       ffi (>= 0.5.0)
       thor (~> 0.14.6)
@@ -113,7 +116,6 @@ GEM
     libv8 (3.3.10.4)
     libwebsocket (0.1.3)
       addressable
-    machinist (2.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -162,6 +164,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.10.0)
+    ruby_gntp (0.3.4)
     rubyzip (0.9.8)
     sass (3.1.17)
     sass-rails (3.2.5)
@@ -210,9 +213,8 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   cucumber-rails (>= 1.3.0)
   database_cleaner (>= 0.7.2)
-  email_spec (>= 1.2.1)
   factory_girl_rails (>= 3.2.0)
-  growl
+  g!
   guard (>= 0.6.2)
   guard-bundler (>= 0.1.3)
   guard-cucumber (>= 0.6.1)
@@ -222,11 +224,11 @@ DEPENDENCIES
   haml-rails (>= 0.3.4)
   jquery-rails
   launchy (>= 2.1.0)
-  machinist
   pg
   rails (= 3.2.2)
   rb-fsevent
   rspec-rails (>= 2.9.0.rc2)
+  ruby_gntp
   sass-rails (~> 3.2.3)
   therubyracer
   thin

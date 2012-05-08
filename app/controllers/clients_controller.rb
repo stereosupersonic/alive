@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
-  # GET /clients
-  # GET /clients.json
+ 
+  before_filter :authenticate
+ 
   def index
     @clients = Client.all
 
@@ -67,7 +68,7 @@ class ClientsController < ApplicationController
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
-  end
+  end 
 
   # DELETE /clients/1
   # DELETE /clients/1.json
