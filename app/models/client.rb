@@ -12,5 +12,6 @@
 #  updated_at     :datetime        not null
 #
 
-class Client < ActiveRecord::Base
+class Client < ActiveRecord::Base 
+  validates_presence_of :mac
 end
