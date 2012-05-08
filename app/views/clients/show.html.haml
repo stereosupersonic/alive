@@ -24,7 +24,9 @@
 %p
   %strong= model_class.human_attribute_name(:created_at) + ':'
   %br
-  = @client.created_at.strftime('%d.%m.%Y %H:%M')
+  = @client.created_at.strftime('%d.%m.%Y %H:%M') 
+  
+%h3= "ssh -p #{@client.port || 22} #{@client.user}@#{@client.ip}"
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), clients_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_client_path(@client), :class => 'btn'

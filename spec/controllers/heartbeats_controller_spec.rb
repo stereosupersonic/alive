@@ -37,5 +37,11 @@ describe HeartbeatsController do
     @client = FactoryGirl.create(:client, :heartbeated_at => 1.day.ago,:name => "test1")
     post :create, :client => FactoryGirl.attributes_for(:client,:name => "changed test1")
     @client.reload.name.should == "test1"
+  end  
+  
+  it "should not update the hostname" do
+    @client = FactoryGirl.create(:client, :heartbeated_at => 1.day.ago,:name => "test1")
+    post :create, :client => FactoryGirl.attributes_for(:client,:name => "changed test1").merge(:hostname => "test.blah.de")
+    @client.reload.hostname.should ==  "test.blah.de"
   end
 end
