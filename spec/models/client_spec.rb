@@ -17,5 +17,9 @@ require 'spec_helper'
 describe Client do
   it "should be valid" do
     FactoryGirl.build(:client).should be_valid  
+  end 
+  
+  it "should not be valid without mac" do
+    FactoryGirl.build(:client, :mac => '').should_not be_valid  
   end
 end
