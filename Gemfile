@@ -29,7 +29,8 @@ group :development , :test do
   gem "rspec-rails",                ">= 2.9.0.rc2"  
   gem "haml-rails",                 ">= 0.3.4"     
   gem "database_cleaner",           ">= 0.7.2"
-  gem "launchy",                    ">= 2.1.0"
+  gem "launchy",                    ">= 2.1.0" 
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 end  
 
 group :test do   

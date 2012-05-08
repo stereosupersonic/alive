@@ -14,11 +14,7 @@
   .control-group
     = f.label :comment, :class => 'control-label'
     .controls
-      = f.text_area :comment, :class => 'text_area'
-  .control-group
-    = f.label :heartbeated_at, :class => 'control-label'
-    .controls
-      = f.datetime_select :heartbeated_at, :class => 'datetime_select'
+      = f.text_area :comment, :class => 'text_area'  
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn'

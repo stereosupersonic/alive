@@ -2,9 +2,11 @@ require 'spec_helper'
 
 describe HeartbeatsController do
   render_views
-
-  it "should create an new client" do
+  before(:each) do
     http_login :user => 'test', :pw => 'test'
+  end
+  it "should create an new client" do
+
     expect {
       post :create, :client => FactoryGirl.attributes_for(:client)
     }.to change(Client, :count).by(1)
@@ -13,10 +15,15 @@ describe HeartbeatsController do
 
   it "should not create  an new client when it exits" do
     FactoryGirl.create(:client)
-    http_login :user => 'test', :pw => 'test'
     expect {
       post :create, :client => FactoryGirl.attributes_for(:client)
     }.to change(Client, :count).by(0)
 
+  end
+
+  it "should update the heartbeated_at" do
+    @client = FactoryGirl.create(:client, :heartbeated_at => 1.day.ago)
+    post :create, :client => FactoryGirl.attributes_for(:client)
+    @client.reload.heartbeated_at.to_date.should == Time.now.to_date
   end
 end
