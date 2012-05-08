@@ -10,6 +10,9 @@
 #  heartbeated_at :datetime
 #  created_at     :datetime        not null
 #  updated_at     :datetime        not null
+#  hostname       :string(255)
+#  port           :integer
+#  user           :string(255)
 #
 
 class Client < ActiveRecord::Base 
