@@ -4,7 +4,8 @@ class HeartbeatsController < ApplicationController
   def create
     @client = Client.find_or_create_by_mac params[:client][:mac]     
     @client.heartbeated_at = Time.now
-    @client.ip = params[:client][:ip] 
+    @client.ip = params[:client][:ip]  
+    @client.hostname = params[:client][:hostname] if  params[:client].has_key?(:hostname)
     respond_to do |format|
       if @client.save 
         format.json { render :json =>  @client, :status => 200, :location => @client }
