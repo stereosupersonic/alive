@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Client do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should be valid" do
+    FactoryGirl.build(:client).should be_valid  
+  end
 end

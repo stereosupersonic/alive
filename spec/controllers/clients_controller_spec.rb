@@ -19,84 +19,104 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ClientsController do
+  render_views
 
-  # This should return the minimal set of attributes required to create a valid
-  # Client. As you add validations to Client, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {}
-  end
-  
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ClientsController. Be sure to keep this updated too.
-  def valid_session
-    {}
+  before(:each) do
+    http_login :user => 'test', :pw => 'test'
+    @client  =  FactoryGirl.create(:client)
   end
 
   describe "GET index" do
+    before(:each) do
+      get :index
+    end
+
     it "assigns all clients as @clients" do
-      client = Client.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:clients).should eq([client])
+      assigns(:clients).should eq([@client])
+    end
+
+    it "should render index" do
+      response.should render_template(:index)
     end
   end
 
   describe "GET show" do
+    before(:each) do
+      get :show, {:id => @client.to_param}
+    end
+
     it "assigns the requested client as @client" do
-      client = Client.create! valid_attributes
-      get :show, {:id => client.to_param}, valid_session
-      assigns(:client).should eq(client)
+      assigns(:client).should eq(@client)
+    end
+
+    it "should render show" do
+      response.should render_template(:show)
     end
   end
 
   describe "GET new" do
+
+    before(:each) do
+      get :new
+    end
+
     it "assigns a new client as @client" do
-      get :new, {}, valid_session
       assigns(:client).should be_a_new(Client)
+    end
+
+    it "should render new" do
+      response.should render_template(:new)
     end
   end
 
   describe "GET edit" do
+
+    before(:each) do
+      get :edit, {:id => @client.to_param}
+    end
+
+    it "should render edit" do
+      response.should render_template(:edit)
+    end
+
     it "assigns the requested client as @client" do
-      client = Client.create! valid_attributes
-      get :edit, {:id => client.to_param}, valid_session
-      assigns(:client).should eq(client)
+
+      assigns(:client).should eq(@client)
     end
   end
 
   describe "POST create" do
+
     describe "with valid params" do
       it "creates a new Client" do
         expect {
-          post :create, {:client => valid_attributes}, valid_session
+          post :create, :client => FactoryGirl.attributes_for(:client)
         }.to change(Client, :count).by(1)
       end
 
       it "assigns a newly created client as @client" do
-        post :create, {:client => valid_attributes}, valid_session
+        post :create, :client => FactoryGirl.attributes_for(:client)
         assigns(:client).should be_a(Client)
         assigns(:client).should be_persisted
       end
 
       it "redirects to the created client" do
-        post :create, {:client => valid_attributes}, valid_session
+        post :create,  :client => FactoryGirl.attributes_for(:client)
         response.should redirect_to(Client.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved client as @client" do
-        # Trigger the behavior that occurs when invalid params are submitted
+      before(:each) do
         Client.any_instance.stub(:save).and_return(false)
-        post :create, {:client => {}}, valid_session
+        post :create, :client => {}
+      end
+      it "assigns a newly created but unsaved client as @client" do
+
         assigns(:client).should be_a_new(Client)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Client.any_instance.stub(:save).and_return(false)
-        post :create, {:client => {}}, valid_session
         response.should render_template("new")
       end
     end
@@ -105,42 +125,34 @@ describe ClientsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested client" do
-        client = Client.create! valid_attributes
-        # Assuming there are no other clients in the database, this
-        # specifies that the Client created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
         Client.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => client.to_param, :client => {'these' => 'params'}}, valid_session
+        put :update, :id => @client.to_param, :client => {'these' => 'params'}
       end
 
       it "assigns the requested client as @client" do
-        client = Client.create! valid_attributes
-        put :update, {:id => client.to_param, :client => valid_attributes}, valid_session
-        assigns(:client).should eq(client)
+
+        put :update, :id => @client.to_param, :client => FactoryGirl.attributes_for(:client)
+        assigns(:client).should eq( @client)
       end
 
       it "redirects to the client" do
-        client = Client.create! valid_attributes
-        put :update, {:id => client.to_param, :client => valid_attributes}, valid_session
-        response.should redirect_to(client)
+        put :update, :id => @client.to_param, :client => FactoryGirl.attributes_for(:client)
+        response.should redirect_to(@client)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the client as @client" do
-        client = Client.create! valid_attributes
+      before(:each) do
         # Trigger the behavior that occurs when invalid params are submitted
         Client.any_instance.stub(:save).and_return(false)
-        put :update, {:id => client.to_param, :client => {}}, valid_session
-        assigns(:client).should eq(client)
+        put :update, :id => @client.to_param, :client => {}
+      end
+
+      it "assigns the client as @client" do
+        assigns(:client).should eq(@client)
       end
 
       it "re-renders the 'edit' template" do
-        client = Client.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Client.any_instance.stub(:save).and_return(false)
-        put :update, {:id => client.to_param, :client => {}}, valid_session
         response.should render_template("edit")
       end
     end
@@ -148,15 +160,14 @@ describe ClientsController do
 
   describe "DELETE destroy" do
     it "destroys the requested client" do
-      client = Client.create! valid_attributes
+
       expect {
-        delete :destroy, {:id => client.to_param}, valid_session
+        delete :destroy, :id => @client.to_param
       }.to change(Client, :count).by(-1)
     end
 
     it "redirects to the clients list" do
-      client = Client.create! valid_attributes
-      delete :destroy, {:id => client.to_param}, valid_session
+      delete :destroy, :id => @client.to_param
       response.should redirect_to(clients_url)
     end
   end
