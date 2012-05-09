@@ -24,7 +24,7 @@ describe Client do
   end 
   
   it "should  be valid without mac" do
-    FactoryGirl.build(:client, :mac => '').shouldbe_valid  
+    FactoryGirl.build(:client, :mac => '').should be_valid  
   end        
   
   it "should not be valid without hostid" do
