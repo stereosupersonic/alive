@@ -4,7 +4,11 @@
 %p
   %strong= model_class.human_attribute_name(:name) + ':'
   %br
-  = @client.name
+  = @client.name 
+%p
+  %strong= model_class.human_attribute_name(:hostname) + ':'
+  %br
+  = @client.hostname
 %p
   %strong= model_class.human_attribute_name(:ip) + ':'
   %br
