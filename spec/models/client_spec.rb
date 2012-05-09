@@ -29,5 +29,13 @@ describe Client do
   
   it "should not be valid without hostid" do
     FactoryGirl.build(:client, :hostid => '').should_not be_valid  
-  end      
+  end  
+  
+  it "should be status online when last update 10 minutes before" do
+      FactoryGirl.build(:client, :heartbeated_at => 9.minutes.ago).status.should == 'online'
+  end  
+  
+  it "should be status offline when last update > 10 minutes " do
+      FactoryGirl.build(:client, :heartbeated_at => 11.minutes.ago).status.should == 'offline'
+  end  
 end
