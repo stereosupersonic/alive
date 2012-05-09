@@ -1,5 +1,5 @@
 = form_for @client, :html => { :class => 'form-horizontal' } do |f|    
-
+  = render "shared/error_messages", :target =>  @client
   .control-group
     = f.label :name, :class => 'control-label'
     .controls
@@ -17,7 +17,15 @@
     .controls
       = f.text_field :user, :class => 'text_field'  
       
-       
+  %p
+    = "hostid: #{@client.hostid}" 
+    %br
+    = "Last IP: #{@client.ip}"
+    %br  
+    = "Last Heartbear: #{heartbeat_label(@client) }"
+    %br
+    = "created: #{@client.created_at.strftime('%d.%m.%Y %H:%M') if @client.created_at}"
+     
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn'
