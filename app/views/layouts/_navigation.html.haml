@@ -1,3 +1,2 @@
 = link_to "Alive", root_path, :class => 'brand'
-
-= link_to "Clients", clients_path, :class => 'brand'
+= link_to "#{logged_in? ? 'Clients' : 'Login'}", clients_path, :class => 'brand'   

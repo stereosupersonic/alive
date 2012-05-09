@@ -13,6 +13,7 @@
 #  hostname       :string(255)
 #  port           :integer
 #  user           :string(255)
+#  hostid         :string(255)
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
@@ -22,6 +23,7 @@ FactoryGirl.define do
     name "lemmy 1"
     ip "123.123.123"
     mac "e0:f8:47:3a:0a:ea"
+    hostid "1233445"
     comment "this is a comment"
     heartbeated_at 1.day.ago
   end

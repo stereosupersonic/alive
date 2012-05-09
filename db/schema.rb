@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508192129) do
+ActiveRecord::Schema.define(:version => 20120509101111) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20120508192129) do
     t.string   "hostname"
     t.integer  "port"
     t.string   "user"
+    t.string   "hostid"
   end
 
   create_table "names", :force => true do |t|

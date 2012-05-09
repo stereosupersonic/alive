@@ -5,15 +5,15 @@
     %tr
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:ip)
-      %th= model_class.human_attribute_name(:mac)    
-      %th= "last heartbeated"
+      %th= model_class.human_attribute_name(:hostid)    
+      %th= "last heartbeat"
       %th= model_class.human_attribute_name(:created_at) 
        
   %tbody
     - @clients.each do |client|
       %tr   
         %td= link_to client.name.to_s, client_path(client)  
-        %td= link_to client.ip, client_path(client)  
-        %td= link_to client.mac, client_path(client)     
+        %td= link_to client.ip.to_s, client_path(client)  
+        %td= link_to client.hostid.to_s, client_path(client)     
         %td= link_to heartbeat_label(client), client_path(client)  
         %td= client.created_at.strftime('%d.%m.%Y %H:%M') 
