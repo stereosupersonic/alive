@@ -17,5 +17,9 @@
 #
 
 class Client < ActiveRecord::Base 
-  validates_presence_of :hostid
+  validates_presence_of :hostid 
+  
+  def status
+   (heartbeated_at && heartbeated_at > 11.minutes.ago) ? 'online' : 'offline' 
+  end
 end
