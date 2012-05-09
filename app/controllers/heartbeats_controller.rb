@@ -1,9 +1,10 @@
 class HeartbeatsController < ApplicationController
   before_filter :authenticate
 
-  def create
-    if params[:client][:hostid]
-      @client = Client.find_or_create_by_hostid params[:client][:hostid]
+  def create   
+    
+    if params[:client][:hostid].present?
+      @client = Client.find_or_create_by_hostid params[:client][:hostid].to_s
       @client.heartbeated_at = Time.now
       @client.ip = params[:client][:ip]
       @client.hostname = params[:client][:hostname] if  params[:client].has_key?(:hostname)
