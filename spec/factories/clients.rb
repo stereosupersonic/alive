@@ -21,8 +21,7 @@
 FactoryGirl.define do
   factory :client do
     name "lemmy 1"
-    ip "123.123.123"
-    mac "e0:f8:47:3a:0a:ea"
+    ip "123.123.123" 
     hostid "1233445"
     comment "this is a comment"
     heartbeated_at 1.day.ago
