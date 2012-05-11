@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   before_filter :authenticate
  
   def index
-    @clients = Client.all
+    @clients = Client.order("heartbeated_at DESC").all
 
     respond_to do |format|
       format.html # index.html.erb
