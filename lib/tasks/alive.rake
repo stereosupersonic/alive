@@ -8,5 +8,5 @@ desc 'Run rspec + cucumber'
 task :build => [:spec, :cucumber] 
 
 task :push do
-   system "git push heroku master"
+  system "git push heroku master"
 end
