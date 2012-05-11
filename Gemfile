@@ -1,11 +1,13 @@
 source 'https://rubygems.org'  
 
-gem 'rails',                     '3.2.3'   
+gem 'rails',                     '3.2.2'   
 
 gem 'pg'
 gem 'jquery-rails',              '2.0.0' 
 gem "haml",                      ">= 3.1.4" 
-gem 'thin'    
+group :production do
+  gem 'thin'
+end  
 
 group :assets do
   gem 'sass-rails',              '~> 3.2.3'
