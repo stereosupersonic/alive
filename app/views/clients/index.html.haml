@@ -1,0 +1,18 @@
+- model_class = Client.new.class
+%h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
+    %tr   
+      %th Status
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:ip)
+      %th= "last heartbeat"
+      
+       
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= image_tag "#{client.status}.png"   
+        %td= link_to client.name.to_s, client_path(client) 
+        %td= link_to client.ip.to_s, client_path(client)
+        %td= link_to heartbeat_label(client), client_path(client)
