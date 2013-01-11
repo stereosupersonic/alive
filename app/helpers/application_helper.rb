@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def current_branch
-    `git symbolic-ref HEAD`.strip.sub("refs/heads/", "")
+    'master'#{}`git symbolic-ref HEAD`.strip.sub("refs/heads/", "")
   end
 
   def to_utf8(text)
