@@ -5,7 +5,6 @@ gem 'rails',                     '3.2.11'
 
 gem 'jquery-rails'             
 gem 'haml-rails',                '~> 0.3.4'
-gem 'grit'
 
 group :production do
   gem 'thin'

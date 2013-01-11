@@ -31,9 +31,10 @@ Set HTTP Auth User and Password
     heroku config:add ALIVE_USER=someuser
     heroku config:add ALIVE_PASSWORD=secret
     
-Push to Heroku  
+Push to Heroku and github
 
     git push heroku master
+    git push origin maste 
     
 Run Migrations   
 
@@ -74,6 +75,12 @@ Please start it manually with the following command:
 
     bundle exec guard    
 
+Infos
+----------------
+
+Show Logs
+
+    heroku logs
 
 Contributors
 ------------
