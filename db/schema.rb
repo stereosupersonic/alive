@@ -26,13 +26,4 @@ ActiveRecord::Schema.define(:version => 20120511154910) do
     t.string   "hostid"
   end
 
-  create_table "names", :force => true do |t|
-    t.string   "ip"
-    t.string   "mac"
-    t.text     "comment"
-    t.datetime "heartbeated_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
 end

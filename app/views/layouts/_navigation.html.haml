@@ -1,2 +1,3 @@
 = link_to "Alive", root_path, :class => 'brand'
 = link_to "#{logged_in? ? 'Clients' : 'Login'}", clients_path, :class => 'brand'   
+= link_to "About", about_path,:class => 'brand'    if logged_in?

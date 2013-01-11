@@ -1,0 +1,18 @@
+%h1 About this ab
+
+- if logged_in?
+  #enviroment
+    %h3 Enviroment
+
+    %p= "Ruby Version: #{RUBY_VERSION}"
+    %p= "Rails.env: #{Rails.env}"
+    %p= "Rails Version: #{link_to Rails.version, 'https://github.com/rails/rails/tree/v'+Rails.version}".html_safe
+    %p= "Platform: #{RUBY_PLATFORM}"
+    %p= "$HOME: #{ENV['HOME']}"
+    %p= "Server IP: #{local_ip}"
+    %p= "App Name: (#{APPLICATION}) #{ENV['URL'].to_s.split(".").first}"
+    %p= "Branch: #{scm_info[:branch]}"
+    %p="Last Changes: #{scm_info[:last_changed_date]} from #{scm_info[:last_changed_author]}"
+    %p="Revision: #{link_to scm_info[:last_commit],scm_info[:tree_url]}".html_safe
+
+    %p=" Diff to Master: #{link_to 'diff', scm_info[:diff_master_url]}".html_safe

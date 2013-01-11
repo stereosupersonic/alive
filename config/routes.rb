@@ -4,17 +4,10 @@ Alive::Application.routes.draw do
   resources :names
 
   root :to => "home#index"         
- 
-  #match 'heartbeat' => 'heartbeats#create', :as => :heartbeat  
+  match 'about' => 'home#about', :as => :about
   
   scope('/api/v1', :defaults => {:format => 'json'}) do
-      # API Version 1
-    #  scope(:module => 'v1') do
-        
-       # controller :heartbeats do
-           match 'heartbeat' => 'heartbeats#create', :as => :heartbeat
-          
-       # end
-     # end
-    end
+    # API Version 1
+    match 'heartbeat' => 'heartbeats#create', :as => :heartbeat
+  end
 end
